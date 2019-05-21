@@ -18,10 +18,10 @@ Example implementation:
 * https://gist.github.com/bkaney/d5acd2b13ed3cc43ccce68a88fcc6c93
 
 
-Also consider this fallback polyfill for addEventLister.:
+Also consider this fallback polyfill for addEventListener.:
 
 ```
-// The standards method is `addEventListener`, there is a
+// The standard method is `addEventListener`, there is a
 // fallback to use `attachEvent`
 var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
 var eventer = window[eventMethod];
