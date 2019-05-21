@@ -1,0 +1,47 @@
+{
+  "name": "fhir-kit-smart-messaging",
+  "version": "0.0.0",
+  "description": "SMART Messaging",
+  "keywords": [
+    "FHIR",
+    "SMART",
+    "SMART Messaging",
+    "CDS Hooks",
+    "HL7"
+  ],
+  "author": "Vermonster",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Vermonster/fhir-kit-smart-messaging.git"
+  },
+  "scripts": {
+    "start": "(cd dev && node server.js)",
+    "clean": "rimraf dist",
+    "test": "jest src",
+    "test:watch": "jest src --watch --notify",
+    "cover": "jest src --coverage",
+    "lint": "eslint src",
+    "build": "rollup -c",
+    "precommit": "lint && yarn test",
+    "prepublishOnly": "clean && lint && test && build"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.8.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-rewire": "^1.2.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jest": "^22.5.1",
+    "express": "^4.17.0",
+    "jest": "^24.8.0",
+    "rollup": "^1.12.3",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-babel-minify": "^8.0.0",
+    "rollup-plugin-node-resolve": "^5.0.0"
+  }
+}

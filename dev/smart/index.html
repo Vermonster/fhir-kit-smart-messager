@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <script src="/dist/index.js"></script>
+    <script src="/smart/app.js"></script>
+  </head>
+  <body>
+    <p>Payload (must be valid JSON)<br/>
+    <p><textarea id="payload" cols="80" rows="10">
+{
+  "resourceType": "Basic"
+}</textarea></p>
+    <button onClick="sendSmartMessage()">Send Message to EHR</button>
+    <p>Message from EHR<br/><textarea id="response" cols="80" rows="10"></textarea></p>
+  </body>
+</html>

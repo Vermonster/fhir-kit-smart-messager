@@ -1,0 +1,16 @@
+{
+  "env": {
+    "browser": true
+  },
+  "extends": [
+    "airbnb-base",
+    "plugin:jest/recommended"
+  ],
+  "plugins": [
+    "jest"
+  ],
+  "rules": {
+    // special case for rewire __get__
+    "no-underscore-dangle": ["error", { "allow": ["__get__"] }]
+  },
+}

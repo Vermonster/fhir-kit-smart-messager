@@ -10,6 +10,18 @@ https://github.com/smart-on-fhir/smart-web-messaging
 
 Works in IE10+, modern Chrome, Safari, Firefox.
 
+## Development
+
+Clone the repo and then
+
+```
+% yarn install
+% yarn build --watch
+% yarn start
+```
+
+Then open `http://localhost:3000` in your browser.
+
 ## Implementation
 
 Example implementation:
