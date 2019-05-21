@@ -1,13 +1,13 @@
 // Create a global stack, event listener with callback function
 window.eventHandlersByMessageId = {};
-window.addEventListener("message", receiveMessage, false);
+window.addEventListener('message', receiveMessage, false);
 
 function receiveMessage(event) {
-  event &&
-    event.data &&
-    event.data.responseToMessageId &&
-    eventHandlersByMessageId[event.data.responseToMessageId] &&
-    eventHandlersByMessageId[event.data.responseToMessageId](event);
+  event
+    && event.data
+    && event.data.responseToMessageId
+    && eventHandlersByMessageId[event.data.responseToMessageId]
+    && eventHandlersByMessageId[event.data.responseToMessageId](event);
 }
 
 
@@ -46,7 +46,7 @@ class SmartMessenger {
     return {
       messageId: this.guid(),
       messageType: type,
-      payload: payload
+      payload,
     };
   }
 
@@ -59,9 +59,9 @@ class SmartMessenger {
   }
 
   guid() {
-    return this.s4() + this.s4() + '-' +
-      this.s4() + '-' + this.s4() + '-' +
-      this.s4() + '-' + this.s4() + this.s4() + this.s4();
+    return `${this.s4() + this.s4()}-${
+      this.s4()}-${this.s4()}-${
+      this.s4()}-${this.s4()}${this.s4()}${this.s4()}`;
   }
 }
 
