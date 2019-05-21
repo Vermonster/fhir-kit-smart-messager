@@ -1,4 +1,4 @@
-# FHIRKit SMART Messaging
+# FHIRKit SMART Messenger
 
 SMART Messaging implementation for the browser.
 
