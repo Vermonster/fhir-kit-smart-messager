@@ -15,6 +15,17 @@
     "type": "git",
     "url": "https://github.com/Vermonster/fhir-kit-smart-messaging.git"
   },
+  "scripts": {
+    "start": "(cd dev && node server.js)",
+    "clean": "rimraf lib",
+    "test": "jest src",
+    "test:watch": "jest src --watch --notify",
+    "cover": "jest src --coverage",
+    "lint": "eslint src",
+    "build": "rollup -c",
+    "precommit": "lint && yarn test",
+    "prepublishOnly": "clean && lint && test && build"
+  },
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "babel-eslint": "^10.0.1",
@@ -32,16 +43,5 @@
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-babel-minify": "^8.0.0",
     "rollup-plugin-node-resolve": "^5.0.0"
-  },
-  "scripts": {
-    "start": "(cd dev && node server.js)",
-    "clean": "rimraf lib",
-    "test": "yarn jest src",
-    "test:watch": "yarn jest src --watch --notify",
-    "cover": "jest src --coverage",
-    "lint": "eslint src",
-    "build": "yarn rollup -c",
-    "precommit": "yarn lint && yarn test",
-    "prepublishOnly": "yarn clean && yarn lint && yarn test && yarn build"
   }
 }
