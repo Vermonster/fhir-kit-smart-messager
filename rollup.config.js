@@ -1,6 +1,7 @@
 // plugins that we are going to use
 import babel from 'rollup-plugin-babel';
 import minify from 'rollup-plugin-babel-minify';
+import resolve from 'rollup-plugin-node-resolve';
 
 // list of plugins used during building process
 const plugins = targets => ([
@@ -30,7 +31,8 @@ export default [{
     name: 'SmartMessenger',
     format: 'iife',
     sourcemap: false
-  }
+  },
+  plugins: [ resolve({ browser: true}) ]
 }, {
   input: 'src/index.js',
   output: {
@@ -39,5 +41,5 @@ export default [{
     format: 'iife',
     sourcemap: true
   },
-  plugins: [ minify() ]
+  plugins: [ minify(), resolve({ browser: true}) ]
 }];

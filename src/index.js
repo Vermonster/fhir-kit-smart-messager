@@ -1,15 +1,27 @@
 // Create a global stack, event listener with callback function
-window.eventHandlersByMessageId = {};
-window.addEventListener('message', receiveMessage, false);
+const eventHandlersByMessageId = {};
 
+// Create a callback for the mesasge event.
 function receiveMessage(event) {
-  event
-    && event.data
+  return event && event.data
     && event.data.responseToMessageId
     && eventHandlersByMessageId[event.data.responseToMessageId]
     && eventHandlersByMessageId[event.data.responseToMessageId](event);
 }
 
+// TODO: Use a proper UUID generator
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+
+  return `${s4() + s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
+}
+
+// Add the callback to an event listener
+window.addEventListener('message', receiveMessage, false);
 
 /**
  * SmartMessenger
@@ -20,7 +32,7 @@ function receiveMessage(event) {
  * const targetOrigin = urlParams.get('smart_messaging_origin') || '*';
  * const targetWindow = window.opener || window.parent;
  *
- * const messenger = new SmartMessenger(targetOrigin, targetWindow);
+ * const messenger = new SmartMessenger(targetWindow, targetOrigin);
  * const payload = { resourceType: "Basic" };
  *
  * messenger.send('scratchpad.create', payload, (event) => {
@@ -30,39 +42,28 @@ function receiveMessage(event) {
  *
  */
 class SmartMessenger {
-  constructor(targetOrigin, targetWindow) {
-    this.targetOrigin = targetOrigin;
+  constructor(targetWindow, targetOrigin) {
+    this.eventHandlersByMessageId = eventHandlersByMessageId;
     this.targetWindow = targetWindow;
+    this.targetOrigin = targetOrigin;
   }
 
   // Build message, postMessage and add to the eventHandler stack
   send(type, payload, eventHandler) {
     const message = this.buildMessage(type, payload);
-    this.targetWindow.postMessage(message, targetOrigin);
+    console.log(this.targetWindow);
+
+    this.targetWindow.postMessage(message, this.targetOrigin);
     eventHandlersByMessageId[message.messageId] = eventHandler;
   }
 
   buildMessage(type, payload) {
     return {
-      messageId: this.guid(),
+      messageId: guid(),
       messageType: type,
       payload,
     };
   }
-
-  // TODO: Use a proper UUID generator, this is just to keep the
-  //       dependencies null
-  s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
-  }
-
-  guid() {
-    return `${this.s4() + this.s4()}-${
-      this.s4()}-${this.s4()}-${
-      this.s4()}-${this.s4()}${this.s4()}${this.s4()}`;
-  }
 }
 
-module.exports = SmartMessenger;
+export default SmartMessenger;
