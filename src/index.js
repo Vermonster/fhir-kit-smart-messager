@@ -10,12 +10,15 @@ function receiveMessage(event) {
 }
 
 // TODO: Use a proper UUID generator
+/* eslint-disable no-bitwise, no-mixed-operators */
 function uuidv4() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+    const r = Math.random() * 16 | 0; const
+      v = c === 'x' ? r : (r & 0x3 | 0x8);
     return v.toString(16);
   });
 }
+/* eslint-enable no-bitwise, no-mixed-operators */
 
 // Add the callback to an event listener
 window.addEventListener('message', receiveMessage, false);
@@ -47,14 +50,13 @@ class SmartMessenger {
 
   // Build message, postMessage and add to the eventHandler stack
   send(type, payload, eventHandler) {
-    const message = this.buildMessage(type, payload);
-    console.log(this.targetWindow);
+    const message = SmartMessenger.buildMessage(type, payload);
 
     this.targetWindow.postMessage(message, this.targetOrigin);
     eventHandlersByMessageId[message.messageId] = eventHandler;
   }
 
-  buildMessage(type, payload) {
+  static buildMessage(type, payload) {
     return {
       messageId: uuidv4(),
       messageType: type,
