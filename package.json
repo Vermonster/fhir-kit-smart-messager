@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "(cd dev && node server.js)",
-    "clean": "rimraf lib",
+    "clean": "rimraf dist",
     "test": "jest src",
     "test:watch": "jest src --watch --notify",
     "cover": "jest src --coverage",
