@@ -21,6 +21,13 @@ messenger.send('scratchpad.create', payload, (event) => {
 });
 ```
 
+## CDN
+
+Add a `<script>` tag with this `src`:
+```
+https://cdn.jsdelivr.net/gh/Vermonster/fhir-kit-smart-messenger@latest/dist/index.min.js
+```
+
 ## Background
 
 https://github.com/smart-on-fhir/smart-web-messaging
