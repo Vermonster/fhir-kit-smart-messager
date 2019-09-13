@@ -7,10 +7,10 @@ SMART Messaging implementation for the browser.
 ```javascript
 // Some setup
 const urlParams = new URLSearchParams(window.location.search);
-const targetOrigin = urlParams.get('smart_messaging_origin') || '*';                                     
+const targetOrigin = urlParams.get('smart_messaging_origin') || '*';
 const targetWindow = window.opener || window.parent;
 
-const payload = { resourceType: "Basic" };                                                               
+const payload = { resourceType: "Basic" };
 
 // Create a messenger object and call send with a callback
 const messenger = new SmartMessenger(targetWindow, targetOrigin);
@@ -18,7 +18,14 @@ const messenger = new SmartMessenger(targetWindow, targetOrigin);
 messenger.send('scratchpad.create', payload, (event) => {
   console.log(event);
   // ...
-});    
+});
+```
+
+## CDN
+
+Add a `<script>` tag with this `src`:
+```
+https://cdn.jsdelivr.net/gh/Vermonster/fhir-kit-smart-messenger@latest/dist/index.min.js
 ```
 
 ## Background
